@@ -1,0 +1,15 @@
+{
+  "name":"StudyMate Ghana",
+  "short_name":"StudyMate",
+  "description":"Offline-first Mathematics and English learning for Ghanaian students.",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#f7f5ef",
+  "theme_color":"#0b5d3b",
+  "orientation":"portrait",
+  "lang":"en-GH",
+  "icons":[
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}

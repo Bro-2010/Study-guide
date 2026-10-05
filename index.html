@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en-GH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b5d3b">
+  <meta name="description" content="StudyMate Ghana is an offline-first Mathematics and English learning app for students.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>StudyMate Ghana</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">S</div>
+      <div>
+        <h1>StudyMate</h1>
+        <p>Maths & English • Ghana</p>
+      </div>
+    </div>
+    <button id="installBtn" class="icon-btn hidden" type="button" aria-label="Install StudyMate">⇩</button>
+  </header>
+
+  <main>
+    <section id="homeView" class="view active" aria-labelledby="homeTitle">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">LEARN ANYWHERE</p>
+          <h2 id="homeTitle">Your study partner, even without data.</h2>
+          <p>Study Mathematics and English lessons, then test yourself with quick quizzes.</p>
+        </div>
+        <div class="offline-pill"><span class="dot"></span><span id="connectionText">Offline-ready</span></div>
+      </div>
+
+      <div class="search-wrap">
+        <label for="searchInput" class="sr-only">Search lessons and quizzes</label>
+        <input id="searchInput" type="search" placeholder="Search lessons, topics or quizzes..." autocomplete="off">
+        <button id="voiceBtn" class="voice-btn" type="button" aria-label="Search by voice">🎙</button>
+      </div>
+      <p id="voiceStatus" class="voice-status" aria-live="polite"></p>
+
+      <div id="searchResults" class="search-results hidden"></div>
+
+      <section class="section">
+        <div class="section-head">
+          <h3>Choose a subject</h3>
+          <button id="seeAllBtn" class="text-btn" type="button">All topics</button>
+        </div>
+        <div class="subject-grid">
+          <button class="subject-card math" data-subject="Mathematics">
+            <span class="subject-icon">∑</span>
+            <span><strong>Mathematics</strong><small>Numbers, algebra, geometry</small></span>
+          </button>
+          <button class="subject-card english" data-subject="English">
+            <span class="subject-icon">Aa</span>
+            <span><strong>English</strong><small>Grammar, vocabulary, writing</small></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h3>Continue learning</h3></div>
+        <div id="continueCard" class="continue-card"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h3>Quick practice</h3><span class="muted">5 questions</span></div>
+        <div class="quick-grid">
+          <button class="quick-card" data-quiz-subject="Mathematics"><span>∑</span><strong>Maths quiz</strong><small>Test your basics</small></button>
+          <button class="quick-card" data-quiz-subject="English"><span>Aa</span><strong>English quiz</strong><small>Check your grammar</small></button>
+        </div>
+      </section>
+    </section>
+
+    <section id="topicsView" class="view" aria-labelledby="topicsTitle">
+      <div class="page-title"><button class="back-btn" data-back="homeView">←</button><div><p class="eyebrow">TOPICS</p><h2 id="topicsTitle">All lessons</h2></div></div>
+      <div id="topicList" class="topic-list"></div>
+    </section>
+
+    <section id="lessonView" class="view" aria-labelledby="lessonTitle">
+      <div class="page-title"><button class="back-btn" data-back="topicsView">←</button><div><p class="eyebrow" id="lessonSubject">LESSON</p><h2 id="lessonTitle">Lesson</h2></div></div>
+      <article id="lessonContent" class="lesson-card"></article>
+      <div class="lesson-actions">
+        <button id="startLessonQuiz" class="primary-btn" type="button">Practice this topic</button>
+        <button id="markCompleteBtn" class="secondary-btn" type="button">Mark as completed</button>
+      </div>
+    </section>
+
+    <section id="quizView" class="view" aria-labelledby="quizTitle">
+      <div class="page-title"><button class="back-btn" data-back="homeView">←</button><div><p class="eyebrow" id="quizSubject">PRACTICE</p><h2 id="quizTitle">Quiz</h2></div></div>
+      <div class="quiz-progress"><div><span id="quizCount">Question 1 of 5</span><span id="scoreLabel">Score: 0</span></div><div class="progress-track"><div id="progressBar"></div></div></div>
+      <article id="questionCard" class="question-card"></article>
+      <div id="quizOptions" class="quiz-options"></div>
+      <div id="feedback" class="feedback" aria-live="polite"></div>
+      <button id="nextQuestionBtn" class="primary-btn hidden" type="button">Next question</button>
+    </section>
+
+    <section id="resultsView" class="view" aria-labelledby="resultsTitle">
+      <div class="results-card">
+        <div class="result-icon">✓</div>
+        <p class="eyebrow">QUIZ COMPLETE</p>
+        <h2 id="resultsTitle">Well done!</h2>
+        <div class="score-circle"><strong id="finalScore">0/5</strong><span id="finalPercent">0%</span></div>
+        <p id="resultMessage"></p>
+        <div class="result-actions">
+          <button id="retryQuizBtn" class="primary-btn" type="button">Try again</button>
+          <button id="resultsHomeBtn" class="secondary-btn" type="button">Back home</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="aboutView" class="view" aria-labelledby="aboutTitle">
+      <div class="page-title"><button class="back-btn" data-back="homeView">←</button><div><p class="eyebrow">ABOUT</p><h2 id="aboutTitle">StudyMate</h2></div></div>
+      <div class="info-card">
+        <h3>Made for everyday studying</h3>
+        <p>StudyMate is a simple offline-first learning app for Ghanaian students. It keeps core lessons and practice questions on your device so you can revise when mobile data is unavailable.</p>
+        <h3>Offline use</h3>
+        <p>Open the app once while connected, then install it from your browser. The app shell and learning content are cached for offline use.</p>
+        <h3>Voice search</h3>
+        <p>Tap the microphone and say a topic such as “fractions” or “parts of speech”. Voice recognition depends on browser/device support and may require an internet connection on some phones.</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-item active" data-view="homeView"><span>⌂</span>Home</button>
+    <button class="nav-item" data-view="topicsView"><span>▤</span>Lessons</button>
+    <button class="nav-item" data-view="quizView" data-nav-quiz="true"><span>✓</span>Quiz</button>
+    <button class="nav-item" data-view="aboutView"><span>ⓘ</span>About</button>
+  </nav>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
